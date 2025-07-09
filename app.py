@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 import joblib
 import os
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 # --- Load Model and Scaler ---
 MODEL_PATH = 'placement_model.pkl'
