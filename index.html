@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Placement Predictor</title>
+  <style>
+    /* Minimal CSS for centering the content */
+    body {
+      display: flex; /* Use flexbox for layout */
+      flex-direction: column; /* Stack items vertically */
+      justify-content: center; /* Center content vertically */
+      align-items: center; /* Center content horizontally */
+      min-height: 100vh; /* Ensure body takes full viewport height */
+      margin: 0; /* Remove default body margin */
+      font-family: sans-serif; /* A basic readable font */
+    }
+    form, .result-container {
+      border: 1px solid #ccc; /* Simple border for visual separation */
+      padding: 20px;
+      margin: 10px; /* Space around elements */
+      width: 300px; /* Fixed width */
+      text-align: left; /* Align text inside form */
+    }
+    input[type="number"], button {
+      width: 100%; /* Make inputs and button fill width */
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    .error-message {
+        color: red;
+        font-weight: bold;
+    }
+    .prediction-result {
+        color: green; /* Just a simple color for the result */
+    }
+  </style>
+</head>
+<body>
+  <form method="post" action="/">
+    <h2>Predict Student Placement</h2>
+
+    <label for="cgpa">CGPA:</label><br>
+    <input type="number" id="cgpa" name="cgpa" step="0.01" value="{{ cgpa }}" required><br>
+
+    <label for="iq">IQ:</label><br>
+    <input type="number" id="iq" name="iq" value="{{ iq }}" required><br>
+
+    <label for="attendance">Attendance (0.00 - 1.00):</label><br>
+    <input type="number" id="attendance" name="attendance" step="0.01" min="0" max="1" value="{{ attendance }}" required><br>
+
+    <button type="submit">Predict Placement</button>
+  </form>
+
+  {% if prediction_result %}
+    <div class="result-container prediction-result">
+      {{ prediction_result }}
+    </div>
+  {% endif %}
+
+  {% if error_message %}
+    <div class="result-container error-message">
+      Error: {{ error_message }}
+    </div>
+  {% endif %}
+</body>
+</html>
