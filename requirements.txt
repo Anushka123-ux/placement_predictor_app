@@ -3,4 +3,5 @@ scikit-learn==1.5.1
 numpy
 pandas
 joblib
-gunicorn
+gunicorn==20.1.0
+gevent==21.12.0
