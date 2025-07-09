@@ -74,6 +74,6 @@ def home():
                            attendance=attendance)
 
 # Run the Flask app
-if _name_ == '_main_':
+if __name__ == '__main__':
     pass 
    
