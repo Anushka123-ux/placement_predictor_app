@@ -1,0 +1,14 @@
+# render.yaml
+services:
+  - type: web
+    name: placement-predictor-app
+    env: python
+    # Explicitly set Python version to 3.11. This should resolve the greenlet/Python 3.13 compilation issues.
+    pythonVersion: 3.11
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn --worker-class gevent --workers 1 --bind 0.0.0.0:8501 app:app"
+    # Optional: Set disk and plan if not free tier, but for now we'll stick to defaults
+    # disk:
+    #   name: mydata
+    #   mountPath: /data
+    # plan: free
